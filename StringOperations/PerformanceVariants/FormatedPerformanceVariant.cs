@@ -1,11 +1,11 @@
 ﻿namespace StringOperations
 {
-  enum FormatedPerformanceVariant
+  public enum FormatedPerformanceVariant
   {
     ToUpper =1,
     ToLower,
     FixedLength,
     RemoveBracers,
-    UnderScoreInsteadSpace
+    UnderscoreInsteadSpace
   }
 }

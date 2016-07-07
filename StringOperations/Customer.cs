@@ -2,13 +2,13 @@
 
 namespace StringOperations
 {
-  class Customer
+  public class Customer
   {
     public string Name { get; private set; }
     public string ContactPhone { get; private set; }
     public decimal Revenue { get; set; }
 
-    public Customer(string name = "Jeffrey Rihter", string contactPhone = "+1-(425)-555-0100", decimal revenue = 1000000)
+    public Customer(string name = "Jeffrey Rihter ", string contactPhone = "+1-(425)-555-0100 ", decimal revenue = 1000000)
     {
       Name = name;
       ContactPhone = contactPhone;

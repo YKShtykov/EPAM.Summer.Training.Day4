@@ -1,6 +1,6 @@
 ﻿namespace StringOperations
 {
-  enum PerformanceVariant
+  public enum PerformanceVariant
   {
     Full =1,
     Short,

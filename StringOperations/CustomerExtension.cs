@@ -2,7 +2,7 @@
 
 namespace StringOperations
 {
-  static class CustomerExtension
+  public static class CustomerExtension
   {
     public static string FormatedPerformance(this Customer customer, FormatedPerformanceVariant option = FormatedPerformanceVariant.ToUpper)
     {
@@ -28,7 +28,7 @@ namespace StringOperations
           result = result.Replace(")", string.Empty);
           break;
 
-        case FormatedPerformanceVariant.UnderScoreInsteadSpace:
+        case FormatedPerformanceVariant.UnderscoreInsteadSpace:
           result = result.Replace(" ", "_");
           break;
 

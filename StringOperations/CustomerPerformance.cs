@@ -2,16 +2,14 @@
 {
   public static class CustomerPerformance
   {
-    public static string CustomerRecord()
+    public static string CustomerRecord(Customer customer)
     {
-      Customer jeffreyRihter = new Customer();
-      return jeffreyRihter.Performance();
+      return customer.Performance();
     }
 
-    public static string FormatedCustomerRecord()
+    public static string FormatedCustomerRecord(Customer customer)
     {
-      Customer jeffreyRihter = new Customer();
-      return jeffreyRihter.FormatedPerformance();
+      return customer.FormatedPerformance();
     }
   }
 }
