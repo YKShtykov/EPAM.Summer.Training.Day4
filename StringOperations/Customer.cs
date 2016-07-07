@@ -2,10 +2,22 @@
 
 namespace StringOperations
 {
+  /// <summary>
+  /// Class consists customer data 
+  /// </summary>
   public class Customer
   {
+    /// <summary>
+    /// Customer name
+    /// </summary>
     public string Name { get; private set; }
+    /// <summary>
+    /// Customer phone
+    /// </summary>
     public string ContactPhone { get; private set; }
+    /// <summary>
+    /// Customer revenue
+    /// </summary>
     public decimal Revenue { get; set; }
 
     public Customer(string name = "Jeffrey Rihter ", string contactPhone = "+1-(425)-555-0100 ", decimal revenue = 1000000)
@@ -15,6 +27,11 @@ namespace StringOperations
       Revenue = revenue;
     }
 
+    /// <summary>
+    /// Method returns customer data in various variants
+    /// </summary>
+    /// <param name="PerformanceVariant option"></param>
+    /// <returns>Customer record</returns>
     public string Performance(PerformanceVariant option = PerformanceVariant.Full)
     {
       CultureInfo culture = CultureInfo.InvariantCulture;

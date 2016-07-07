@@ -5,8 +5,17 @@ using System.Linq;
 
 namespace JaggedArraySortLogic
 {
+  /// <summary>
+  /// Class sortint jagged arrays by various variants
+  /// </summary>
   public class ArraySort
   {
+    /// <summary>
+    /// BubleSort method sorts jagged arrays by various variants
+    /// </summary>
+    /// <param name="int[][] arr"></param>
+    /// <param name="SortVariant option"></param>
+    /// <param name="bool descending"></param>
     public static void BubleSort(int[][] arr, SortVariant option = SortVariant.Sum, bool descending = false)
     {
       int length = arr.Length;
@@ -28,10 +37,20 @@ namespace JaggedArraySortLogic
       {
         for (int j = 1; j < length - k; j++)
         {
-          if (arrComparer.Compare(arr[j], arr[j - 1]) == -1)
+          if (arr[j]!=null&& arr[j - 1]!=null)
           {
-            Swap(ref arr[j], ref arr[j - 1]);
+            if (arrComparer.Compare(arr[j], arr[j - 1]) == -1)
+            {
+              Swap(ref arr[j], ref arr[j - 1]);
+            }
           }
+          else
+          {
+            if (arr[j] == null)
+            {
+              Swap(ref arr[j], ref arr[j - 1]);
+            }
+          }          
         }
       }
 
@@ -46,6 +65,6 @@ namespace JaggedArraySortLogic
       int[] temp = a;
       a = b;
       b = temp;
-    }
+    } 
   }
 }

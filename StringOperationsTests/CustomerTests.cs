@@ -4,9 +4,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace StringOperationsTests
 {
+  /// <summary>
+  /// Class testing Customer Performance
+  /// </summary>
   [TestClass]
-  public class CustomerPerformanceTests
+  public class CustomerTests
   {
+    /// <summary>
+    /// Test of full performance
+    /// </summary>
     [TestMethod]
     public void CustomerPerformanceTest_DefaultCustomer_FullPerformance()
     {
@@ -21,6 +27,9 @@ namespace StringOperationsTests
       Assert.AreEqual(result, correctResult);
     }
 
+    /// <summary>
+    /// Test of name performance
+    /// </summary>
     [TestMethod]
     public void CustomerPerformanceTest_DefaultCustomer_NamePerformance()
     {
@@ -35,6 +44,9 @@ namespace StringOperationsTests
       Assert.AreEqual(result, correctResult);
     }
 
+    /// <summary>
+    /// Test of phone performance
+    /// </summary>
     [TestMethod]
     public void CustomerPerformanceTest_DefaultCustomer_PhonePerformance()
     {
@@ -49,6 +61,9 @@ namespace StringOperationsTests
       Assert.AreEqual(result, correctResult);
     }
 
+    /// <summary>
+    /// Test of extention method, returns Upper full performance
+    /// </summary>
     [TestMethod]
     public void CustomerPerformanceTest_DefaultCustomer_ToUpperPerformance()
     {
@@ -63,6 +78,9 @@ namespace StringOperationsTests
       Assert.AreEqual(result, correctResult);
     }
 
+    /// <summary>
+    /// Test of extention method, returns full performance without spaces
+    /// </summary>
     [TestMethod]
     public void CustomerPerformanceTest_DefaultCustomer_UnderScoreInsteadSpacePerformance()
     {
@@ -77,6 +95,9 @@ namespace StringOperationsTests
       Assert.AreEqual(result, correctResult);
     }
 
+    /// <summary>
+    /// Test of extention method, returns full performance without bracers
+    /// </summary>
     [TestMethod]
     public void CustomerPerformanceTest_DefaultCustomer_WithoutBracersPerformance()
     {

@@ -2,8 +2,17 @@
 
 namespace StringOperations
 {
+  /// <summary>
+  /// Exctention class
+  /// </summary>
   public static class CustomerExtension
   {
+    /// <summary>
+    /// Retuns formated customer record in various variants
+    /// </summary>
+    /// <param name="Customer customer"></param>
+    /// <param name="FormatedPerformanceVariant option"></param>
+    /// <returns>Formated customer record</returns>
     public static string FormatedPerformance(this Customer customer, FormatedPerformanceVariant option = FormatedPerformanceVariant.ToUpper)
     {
       string result = string.Format(CultureInfo.InvariantCulture, customer.Performance());

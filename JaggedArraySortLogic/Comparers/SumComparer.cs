@@ -4,25 +4,19 @@ using System.Linq;
 
 namespace JaggedArraySortLogic
 {
+  /// <summary>
+  /// Service class compares by summary of all row values
+  /// </summary>
   class SumComparer : IComparer<int[]>
   {
+    /// <summary>
+    /// comparing by summary of all row values
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
     public int Compare(int[] x, int[] y)
     {
-      if (x == null && y == null)
-      {
-        return 0;
-      }
-
-      if (x == null)
-      {
-        return -1;
-      }
-
-      if (y == null)
-      {
-        return 1;
-      }
-
       return x.Sum().CompareTo(y.Sum());
     }
   }
