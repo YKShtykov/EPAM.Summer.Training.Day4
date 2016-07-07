@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace JaggedArraySortLogic
 {
@@ -20,6 +17,7 @@ namespace JaggedArraySortLogic
     {
       int length = arr.Length;
       IComparer<int[]> arrComparer;
+      int comparationValue = descending ? 1 : -1;
       switch (option)
       {
         case SortVariant.MaxValue:
@@ -37,26 +35,31 @@ namespace JaggedArraySortLogic
       {
         for (int j = 1; j < length - k; j++)
         {
-          if (arr[j]!=null&& arr[j - 1]!=null)
+          if (arr[j] != null && arr[j - 1] != null)
           {
-            if (arrComparer.Compare(arr[j], arr[j - 1]) == -1)
+            if (arrComparer.Compare(arr[j], arr[j - 1]) == comparationValue)
             {
               Swap(ref arr[j], ref arr[j - 1]);
             }
           }
           else
           {
-            if (arr[j] == null)
+            if (!descending)
             {
-              Swap(ref arr[j], ref arr[j - 1]);
+              if (arr[j] == null)
+              {
+                Swap(ref arr[j], ref arr[j - 1]);
+              }
             }
-          }          
+            else
+            {
+              if ((arr[j - 1] == null))
+              {
+                Swap(ref arr[j], ref arr[j - 1]);
+              }
+            }
+          }
         }
-      }
-
-      if (descending)
-      {
-        Array.Reverse(arr);
       }
     }
 
@@ -65,6 +68,6 @@ namespace JaggedArraySortLogic
       int[] temp = a;
       a = b;
       b = temp;
-    } 
+    }
   }
 }
