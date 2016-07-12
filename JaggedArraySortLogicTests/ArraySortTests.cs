@@ -1,7 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JaggedArraySortLogic;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace JaggedArraySortLogicTests
 {
@@ -32,13 +33,14 @@ namespace JaggedArraySortLogicTests
     public void BubleSortSumTest()
     {
       //Arrange 
+      SumValueSorting sortingObject = new SumValueSorting();
       int[][] resultSumArr = new int[3][];
       resultSumArr[1] = new int[] { 2, 5, 10 };
       resultSumArr[0] = new int[] { -100, 100 };
       resultSumArr[2] = new int[] { 1000 };
 
       //Act
-      ArraySort.BubleSort(testedArr);
+      ArraySort.BubleSort(testedArr, sortingObject);
 
       //Assert
       Debug.WriteLine("{0}", testedArr[0][0]);
@@ -47,7 +49,7 @@ namespace JaggedArraySortLogicTests
       for (int i = 0; i < testedArr.Length; i++)
       {
         CollectionAssert.AreEqual(testedArr[i], resultSumArr[i]);
-      }      
+      }
     }
 
     /// <summary>
@@ -57,13 +59,14 @@ namespace JaggedArraySortLogicTests
     public void BubleSortMaxValueTest()
     {
       //Arrange
+      MaxValueSorting sortingObject = new MaxValueSorting();
       int[][] resultSumArr = new int[3][];
       resultSumArr[0] = new int[] { 2, 5, 10 };
       resultSumArr[1] = new int[] { -100, 100 };
       resultSumArr[2] = new int[] { 1000 };
 
       //Act
-      ArraySort.BubleSort(testedArr,option: SortVariant.MaxValue);
+      ArraySort.BubleSort(testedArr, sortingObject);
 
       //Assert
       Debug.WriteLine("{0}", testedArr[0][0]);
@@ -82,13 +85,14 @@ namespace JaggedArraySortLogicTests
     public void BubleSortMinValueTest()
     {
       //Arrange
+      MinValueSorting sortingObject = new MinValueSorting();
       int[][] resultSumArr = new int[3][];
       resultSumArr[1] = new int[] { 2, 5, 10 };
       resultSumArr[0] = new int[] { -100, 100 };
       resultSumArr[2] = new int[] { 1000 };
 
       //Act
-      ArraySort.BubleSort(testedArr, option: SortVariant.MinVavue);
+      ArraySort.BubleSort(testedArr, sortingObject);
 
       //Assert
       Debug.WriteLine("{0}", testedArr[0][0]);
@@ -100,27 +104,51 @@ namespace JaggedArraySortLogicTests
       }
     }
 
-    /// <summary>
-    /// Minimum value sort testing with null
-    /// </summary>
-    [TestMethod]
-    public void BubleSortMinValueTest_OneRowISNull()
+    public class MaxValueSorting : IComparer<int[]>
     {
-      //Arrange
-      testedArr[0] = null;
-
-      int[][] resultSumArr = new int[3][];
-      resultSumArr[0] = null;
-      resultSumArr[1] = new int[] { -100, 100 };
-      resultSumArr[2] = new int[] { 1000 };
-
-      //Act
-      ArraySort.BubleSort(testedArr, option: SortVariant.MinVavue);
-
-      //Assert
-      for (int i = 0; i < testedArr.Length; i++)
+      public int Compare(int[] x, int[] y)
       {
-        CollectionAssert.AreEqual(testedArr[i], resultSumArr[i]);
+        return x.Max().CompareTo(y.Max());
+      }
+    }
+
+    public class MaxValueSortingDescending : IComparer<int[]>
+    {
+      public int Compare(int[] x, int[] y)
+      {
+        return -x.Max().CompareTo(y.Max());
+      }
+    }
+
+    public class MinValueSorting : IComparer<int[]>
+    {
+      public int Compare(int[] x, int[] y)
+      {
+        return x.Min().CompareTo(y.Min());
+      }
+    }
+
+    public class MinValueSortingDescending : IComparer<int[]>
+    {
+      public int Compare(int[] x, int[] y)
+      {
+        return -x.Min().CompareTo(y.Min());
+      }
+    }
+
+    public class SumValueSorting : IComparer<int[]>
+    {
+      public int Compare(int[] x, int[] y)
+      {
+        return x.Sum().CompareTo(y.Sum());
+      }
+    }
+
+    public class SumValueSortingDescending : IComparer<int[]>
+    {
+      public int Compare(int[] x, int[] y)
+      {
+        return -x.Sum().CompareTo(y.Sum());
       }
     }
   }
