@@ -1,11 +1,11 @@
-﻿using System.Globalization;
+﻿using System;
 
 namespace StringOperations
 {
   /// <summary>
   /// Class consists customer data 
   /// </summary>
-  public class Customer
+  public class Customer : IFormatProvider, ICustomFormatter, IFormattable
   {
     /// <summary>
     /// Customer name
@@ -28,38 +28,124 @@ namespace StringOperations
     }
 
     /// <summary>
-    /// Method returns customer data in various variants
+    /// IFormatProvider method
     /// </summary>
-    /// <param name="PerformanceVariant option"></param>
-    /// <returns>Customer record</returns>
-    public string Performance(PerformanceVariant option = PerformanceVariant.Full)
+    /// <param name="formatType"></param>
+    /// <returns></returns>
+    public object GetFormat(Type formatType)
     {
-      CultureInfo culture = CultureInfo.InvariantCulture;
-      string customerRecord = "Customer Record: ";
-      string result;
-      switch (option)
-      {
-        case PerformanceVariant.Short:
-          result = Name + ContactPhone;
-          break;
+      if (formatType == typeof(ICustomFormatter))
+        return this;
+      else
+        return null;
+    }
 
-        case PerformanceVariant.Name:
+    /// <summary>
+    /// ICustomFormatter method, returns various variants of customer string presentation
+    /// </summary>
+    /// <param name="format"></param>
+    /// <param name="arg"></param>
+    /// <param name="formatProvider"></param>
+    /// <returns></returns>
+    public string Format(string format, object arg, IFormatProvider formatProvider)
+    {
+      string result = string.Empty;
+
+      switch (format.ToUpper())
+      {
+        case "N":
           result = Name;
           break;
 
-        case PerformanceVariant.Revenue:
-          result = string.Format(culture, "{0}", Revenue);
-          break;
-
-        case PerformanceVariant.PhoneNumber:
+        case "P":
           result = ContactPhone;
           break;
 
+        case "R":
+          result = Revenue.ToString();
+          break;
+
+        case "NR":
+          result = Name + Revenue.ToString();
+          break;
+
         default:
-          result = Name + ContactPhone + string.Format(culture, "{0}", Revenue);
+          result = Name + ContactPhone + Revenue.ToString();
           break;
       }
-      return string.Format(culture, customerRecord + result);
+      return result;
+    }
+
+    /// <summary>
+    /// IFormattable method, returns various variants of customer string presentation
+    /// </summary>
+    /// <param name="format"></param>
+    /// <param name="formatProvider"></param>
+    /// <returns></returns>
+    public string ToString(string format, IFormatProvider formatProvider)
+    {
+      string result = string.Empty;
+
+      switch (format.ToUpper())
+      {
+        case "N":
+          result = Name;
+          break;
+
+        case "P":
+          result = ContactPhone;
+          break;
+
+        case "R":
+          result = Revenue.ToString();
+          break;
+
+        case "NR":
+          result = Name + Revenue.ToString();
+          break;
+
+        default:
+          result = Name + ContactPhone + Revenue.ToString();
+          break;
+      }
+      return result;
+    }
+  }
+
+  /// <summary>
+  /// Class formatter for extending customer string presentation
+  /// </summary>
+  public class ExtendFormatter : IFormatProvider, ICustomFormatter
+  {
+    /// <summary>
+    /// ICustomFormatter method, returns various variants of customer string presentation
+    /// </summary>
+    /// <param name="format"></param>
+    /// <param name="arg"></param>
+    /// <param name="formatProvider"></param>
+    /// <returns></returns>
+    public string Format(string format, object arg, IFormatProvider formatProvider)
+    {
+      switch (format)
+      {
+        case "A":
+          return "this works!";
+        default:
+          return "this works defaultly";
+      }
+    }
+
+    /// <summary>
+    /// IFormatProvider method
+    /// </summary>
+    /// <param name="formatType"></param>
+    /// <returns></returns>
+    public object GetFormat(Type formatType)
+    {
+      if (formatType == typeof(ICustomFormatter))
+        return this;
+      else
+        return null;
     }
   }
 }
