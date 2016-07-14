@@ -9,16 +9,23 @@ namespace JaggedArraySortLogic
   /// </summary>
   public class ArraySort
   {
+    public delegate int Comparer(int[] lhs, int[] rhs);
     public static void BubleSort(int[][] arr, IComparer<int[]> sortingObject)
     {
-      bool sorted =false;
+      Comparer comparer = sortingObject.Compare;
+      Sort(arr, comparer);
+    }
+
+    private static void Sort(int[][] arr, Comparer comparer)
+    {
+      bool sorted = false;
 
       while (!sorted)
       {
         sorted = true;
-        for (int i = 0; i < arr.Length-1; i++)
+        for (int i = 0; i < arr.Length - 1; i++)
         {
-          if (sortingObject.Compare(arr[i], arr[i + 1]) == 1)
+          if (comparer(arr[i], arr[i + 1]) == 1)
           {
             Swap(ref arr[i], ref arr[i + 1]);
             sorted = false;
